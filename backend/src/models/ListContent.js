@@ -14,7 +14,8 @@ ListContent.init({
     references: {
       model: 'listType',
       key: 'id'
-    }
+    },
+    allowNull: false
   },
   name: {
     type: DataTypes.STRING,
