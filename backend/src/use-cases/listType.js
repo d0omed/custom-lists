@@ -1,5 +1,5 @@
 const { Op } = require('sequelize')
-const ListType = require('../models/ListType')
+const { ListType } = require('../models')
 const { NotFoundError } = require('../classes/errors')
 
 module.exports = {
