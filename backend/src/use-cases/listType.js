@@ -1,5 +1,6 @@
 const { Op } = require('sequelize')
 const ListType = require('../models/ListType')
+const { NotFoundError } = require('../classes/errors')
 
 module.exports = {
   getAll({ limit = 10, offset = 0, name = '' }) {
@@ -17,10 +18,18 @@ module.exports = {
   add(listType) {
     return ListType.create(listType)
   },
-  update({ id, listType }) {
+  async update({ id, listType }) {
+    const exists = await ListType.findByPk(id)
+    if (!exists) {
+      throw new NotFoundError()
+    }
     return ListType.update(listType, { where: { id } })
   },
-  remove(id) {
+  async remove(id) {
+    const exists = await ListType.findByPk(id)
+    if (!exists) {
+      throw new NotFoundError()
+    }
     return ListType.destroy({ where: { id } })
   }
 }

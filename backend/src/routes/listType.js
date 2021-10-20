@@ -39,12 +39,12 @@ router.put('/:id', async (req, res) => {
   try {
     const { id } = req.params
     const [count, rows] = await update({ id, listType: req.body })
-    if (count > 0) {
-      res.status(200).json({ count, rows })
-    } else {
-      res.status(404).json({ message: 'Not found.' })
-    }
+    res.status(200).json({ count, rows })
   } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).json({ message: 'Not found.' })
+      return
+    }
     res.status(500).json(err)
   }
 })
@@ -53,12 +53,12 @@ router.delete('/:id', async (req, res) => {
   const { id } = req.params
   try {
     const count = await remove(id)
-    if (count > 0) {
-      res.status(200).json({ count })
-    } else {
-      res.status(404).json({ message: 'Not found.' })
-    }
+    res.status(200).json({ count })
   } catch (err) {
+    if (err.name === 'NotFoundError') {
+      res.status(404).json({ message: 'Not found.' })
+      return
+    }
     res.status(500).json(err)
   }
 })
