@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { getAll, getOne, add, remove, update } = require('../data-access/listTypeField')
+const { getAll, getOne, add, remove, update } = require('../data-access/listContent')
 const router = Router()
 
 router.get('/', async (req, res) => {

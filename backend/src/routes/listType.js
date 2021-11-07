@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { getAll, getOne, add, remove, update } = require('../use-cases/listType')
+const { getAll, getOne, add, remove, update } = require('../data-access/listType')
 const router = Router()
 
 router.get('/', async (req, res) => {
