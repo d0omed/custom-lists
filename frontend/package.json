@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.2",
+    "eslint": "^8.11.0",
     "unocss": "^0.6.4",
     "vite": "^2.6.0"
   }
